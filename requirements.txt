@@ -1,0 +1,4 @@
+pytube
+mutagen
+moviepy
+eyed3

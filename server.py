@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template_string
+from flask import Flask, request, render_template_string, redirect, url_for
 from flask_basicauth import BasicAuth
 from dotenv import load_dotenv
 import os
@@ -6,9 +6,6 @@ import subprocess
 
 # Load environment variables from .env file
 load_dotenv()
-
-print(f"USERNAME: {os.getenv('USERNAME')}")
-print(f"PASSWORD: {os.getenv('PASSWORD')}")
 
 app = Flask(__name__)
 app.config['BASIC_AUTH_USERNAME'] = os.getenv('USERNAME')
@@ -18,6 +15,10 @@ basic_auth = BasicAuth(app)
 # Define the path to the 'image' folder
 UPLOAD_FOLDER = 'image/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# Ensure the image folder exists
+if not os.path.exists(app.config['UPLOAD_FOLDER']):
+    os.makedirs(app.config['UPLOAD_FOLDER'])
 
 # Path to the venv
 path = os.path.join(os.getcwd(), 'venv', 'Scripts', 'python')
@@ -36,24 +37,14 @@ def index():
             filename = file.filename
             file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(file_path)
+            
             result = subprocess.run([
                 path, "main.py",
                 video_link, title, artist, genre
             ], capture_output=True, text=True)
-        else:
-            file_response = 'No file uploaded'
 
-        return f'''
-                <h2>Form Submitted</h2>
-                <p>Video Link: {video_link}</p>
-                <p>Title: {title}</p>
-                <p>Artist: {artist}</p>
-                <p>Genre: {genre}</p>
-                <h3>Script Output:</h3>
-                <pre>{result.stdout}</pre>
-                <h3>Errors (if any):</h3>
-                <pre>{result.stderr}</pre>
-            '''
+            # Redirect to a different route after POST
+            return redirect(url_for('result', result_stdout=result.stdout, result_stderr=result.stderr))
 
     return render_template_string('''
         <!doctype html>
@@ -76,7 +67,25 @@ def index():
 
           <input type=submit value=Submit>
         </form>
-        ''')
+    ''')
+
+@app.route('/result')
+@basic_auth.required
+def result():
+    stdout = request.args.get('result_stdout', '')
+    stderr = request.args.get('result_stderr', '')
+
+    return f'''
+        <h2>Form Submitted</h2>
+        <h3>Script Output:</h3>
+        <pre>{stdout}</pre>
+        <h3>Errors (if any):</h3>
+        <pre>{stderr}</pre>
+        <br>
+        <form action="/" method="get">
+            <button type="submit">Back to Form</button>
+        </form>
+    '''
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

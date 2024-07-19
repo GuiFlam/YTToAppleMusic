@@ -5,11 +5,13 @@ import eyed3
 from eyed3.id3.frames import ImageFrame
 import os
 
+
 # Add your video link, title, and artist here
-video = "https://www.youtube.com/watch?v=------------"
-title = "-----------"
-artist = "----------"
-genre = "-----------"
+video = "https://www.youtube.com/watch?v=VqT55Cwp_b0"
+title = "GONE, GONE THANK YOU"
+artist = "Tyler, The Creator"
+genre = "Hip-Hop/Rap"
+
 
 # Define folders
 image_folder = "image/"
@@ -29,6 +31,7 @@ for file in os.listdir(image_folder):
 
 yt = YouTube(video)
 video = yt.streams.filter().first()
+
 out_file = video.download(output_path=output_folder)
 
 # Rename the downloaded file to .mp4

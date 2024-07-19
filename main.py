@@ -4,13 +4,21 @@ from moviepy.video.io.VideoFileClip import VideoFileClip
 import eyed3
 from eyed3.id3.frames import ImageFrame
 import os
+import argparse
 
 
-# Add your video link, title, and artist here
-video = "https://www.youtube.com/watch?v=VqT55Cwp_b0"
-title = "GONE, GONE THANK YOU"
-artist = "Tyler, The Creator"
-genre = "Hip-Hop/Rap"
+parser = argparse.ArgumentParser(description='Process a YouTube video.')
+parser.add_argument('video_link', type=str, help='The YouTube video link')
+parser.add_argument('title', type=str, help='The title of the video')
+parser.add_argument('artist', type=str, help='The artist of the video')
+parser.add_argument('genre', type=str, help='The genre of the video')
+args = parser.parse_args()
+
+# Use the arguments
+video = args.video_link
+title = args.title
+artist = args.artist
+genre = args.genre
 
 # Define folders
 image_folder = "image/"
@@ -23,7 +31,7 @@ if not os.path.exists(output_folder):
 # Find the first image file in the image folder
 image_file = None
 for file in os.listdir(image_folder):
-    if file.endswith(".jpg"):
+    if file.endswith(".jpg") or file.endswith(".jpeg"):
         image_file = os.path.join(image_folder, file)
         print("Image file found: " + image_file)
         break

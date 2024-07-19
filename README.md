@@ -32,4 +32,11 @@ Here is a preview of the song in my Apple Music library:
 
 ## How to use (Server version)
 
-Not working yet...
+1. Create a new file called `.env` and fill in the values
+```env
+USERNAME=yourusername
+PASSWORD=yourpassword
+```
+1. Run the server by running `python server.py`
+2. Connect to the server by going to `http://yourlocalip:5000` on your browser
+3. Fill in the values and click on the `Submit` button

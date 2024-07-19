@@ -3,7 +3,7 @@
 ## How to use (Local version)
 
 1. Clone the repository
-2. Run the virtual environment by running `myenv\Scripts\activate` on Windows or `source venv/bin/activate` on MacOS/Linux
+2. Run the virtual environment by running `python -m venv venv` and then `venv\Scripts\activate` on Windows or `source venv/bin/activate` on MacOS/Linux
 3. Run `pip install -r requirements.txt`
 4. Fill in those values in the `main.py` file
 ```python

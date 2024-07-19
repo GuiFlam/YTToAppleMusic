@@ -11,13 +11,15 @@ Here is the custom song cover I will use for this example:
 </p>
 
 1. Put the song cover in the `image` folder (make sure it is a `.jpg` file and the aspect ratio is 1:1)
-2. Save the file and run the `main.py` with the following arguments:
+2. Put your iTunes library path in the `main.py` file
+```python
+itunes_folder = r"C:\Users\user\Music\iTunes\iTunes Media\Automatically Add to iTunes"
+```
+3. Save the file and run the `main.py` with the following arguments:
 ```bash
 python main.py https://www.youtube.com/videolink --title "TheFatRat - Monody (feat. Laura Brehm)" --artist "TheFatRat" --album "Monody" --genre "Electronic"
 ```
-3. The script will download the video, convert it to an audio file and add the metadata into the audio file
-
-The next thing to do is to add the song to your Apple Music library. You can do this by opening the Apple Music / iTunes app on your computer and dragging the song into the app. The song will be added to your library and you can listen to it on all your devices.
+1. The script will download the video, convert it to an audio file, add the metadata into the audio file and then add it to your iTunes library so you can listen to it on your Apple Music library
 
 ## Preview 
 

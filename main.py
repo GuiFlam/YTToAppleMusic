@@ -5,7 +5,11 @@ import eyed3
 from eyed3.id3.frames import ImageFrame
 import os
 import argparse
+import shutil
+import subprocess
 
+# Define the destination folder for iTunes
+itunes_folder = r"C:\Users\user\Music\iTunes\iTunes Media\Automatically Add to iTunes"
 
 parser = argparse.ArgumentParser(description='Process a YouTube video.')
 parser.add_argument('video_link', type=str, help='The YouTube video link')
@@ -75,3 +79,24 @@ with open(image_file, 'rb') as img_file:
 audiofile.tag.save()
 
 print("All videos have been processed successfully.")
+
+try:
+    shutil.move(os.path.join(mp3_filename), os.path.join(itunes_folder, os.path.basename(mp3_filename)))
+    print(f"MP3 file moved to {itunes_folder}")
+
+    # Open iTunes application
+    subprocess.run(["start", "iTunes"], shell=True)
+    print("iTunes has been opened.")
+
+    # Remove all files in the image folder
+    for file in os.listdir(image_folder):
+        file_path = os.path.join(image_folder, file)
+        if os.path.isfile(file_path):
+            os.remove(file_path)
+            print(f"Removed file: {file_path}")
+        elif os.path.isdir(file_path):
+            shutil.rmtree(file_path)
+            print(f"Removed directory: {file_path}")
+except Exception as e:
+    print(f"Error moving file: {e}")
+

@@ -14,7 +14,7 @@ python -m venv venv
 ```
 and 
 ```bash
-venv\Scripts\activate
+.\venv\Scripts\activate
 ```
 3. Install the packages: 
 ```bash

@@ -1,4 +1,7 @@
-pytube
+pytubefix
 mutagen
 moviepy
 eyed3
+flask
+Flask-BasicAuth
+python-dotenv

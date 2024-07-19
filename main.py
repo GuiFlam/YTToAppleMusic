@@ -1,4 +1,4 @@
-from pytube import YouTube
+from pytubefix import YouTube
 from mutagen.easyid3 import EasyID3
 from moviepy.video.io.VideoFileClip import VideoFileClip
 import eyed3
@@ -11,7 +11,6 @@ video = "https://www.youtube.com/watch?v=VqT55Cwp_b0"
 title = "GONE, GONE THANK YOU"
 artist = "Tyler, The Creator"
 genre = "Hip-Hop/Rap"
-
 
 # Define folders
 image_folder = "image/"

@@ -21,25 +21,28 @@ and
 pip install -r requirements.txt
 ```
 4. You need to have iTunes installed on your computer
-5. Put your iTunes library path in the `main.py` file at line 12
+5. Put the path to your `Automatically Add to iTunes` folder in the `main.py` file at line 12
 ```python
 itunes_folder = r"C:\Users\user\Music\iTunes\iTunes Media\Automatically Add to iTunes"
 ```
-
-## How to use 
-
-1. Create a new file called `.env` and fill in the values
+6. Create a new file called `.env` at the root of the project and fill in the values
 ```env
 USERNAME=yourusername
 PASSWORD=yourpassword
 ```
-1. Run the server by running `python server.py`
-2. Connect to the server by going to `http://yourlocalip:5000` on your browser if you are on another device, or `http://localhost:5000` if you are on the same device running the server
+
+## How to use 
+
+1. Run the server by running (make sure the virtual environment is activated)
+```bash
+python server.py
+```
+2. Open the web application by going to `http://yourlocalip:5000` on your browser if you are on another device, or `http://127.0.0.1:5000` if you are on the same device running the server
 3. Fill in the values and click on the `Submit` button and make sure the image is a `.jpg` or `.jpeg` file and the aspect ratio is 1:1 or else the image won't get uploaded to the iTunes library
 <p align="center">
   <img src="misc/fill.jpg" alt="Main Image" width="400">
 </p>
-4. The script will download the video, convert it to an audio file, add the metadata into the audio file and then add it to your iTunes library so you can listen to it on your Apple Music library
+4. The script will download the video, convert it to an audio file, add the metadata into the audio file and then add it to your iTunes library so you can listen to it on your Apple Music library. In the process, your iTunes application will open, so make sure to not close it until the song is added to your library, if you close it, the song won't be added to your library and will stay offline in your iTunes library until you open the application again.
    
 ## Preview 
 

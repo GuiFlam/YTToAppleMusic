@@ -44,7 +44,7 @@ def index():
             ], capture_output=True, text=True)
 
             # Redirect to a different route after POST
-            return redirect(url_for('result', result_stdout=result.stdout, result_stderr=result.stderr))
+            return redirect(url_for('result', result_stdout="Success!", result_stderr=result.stderr))
 
     return render_template_string('''
         <!doctype html>

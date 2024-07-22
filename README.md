@@ -37,7 +37,7 @@ PASSWORD=yourpassword
 ```bash
 python server.py
 ```
-2. Open the web application by going to `http://yourlocalip:5000` on your browser if you are on another device, or `http://127.0.0.1:5000` if you are on the same device running the server
+2. Open the web application by going to `http://yourlocalip:5000` (you can get your local ip by entering `ipconfig` in the terminal and selecting the IPV4 address) on your browser if you are on another device, or `http://127.0.0.1:5000` if you are on the same device running the server
 3. Fill in the values and click on the `Submit` button and make sure the image is a `.jpg` or `.jpeg` file and the aspect ratio is 1:1 or else the image won't get uploaded to the iTunes library
 <p align="center">
   <img src="misc/fill.jpg" alt="Main Image" width="400">

@@ -23,7 +23,7 @@ pip install -r requirements.txt
 4. You need to have iTunes installed on your computer
 5. Put the path to your `Automatically Add to iTunes` folder in the `main.py` file at line 12
 ```python
-itunes_folder = r"C:\Users\user\Music\iTunes\iTunes Media\Automatically Add to iTunes"
+itunes_folder = r"C:\Users\<user>\Music\iTunes\iTunes Media\Automatically Add to iTunes"
 ```
 6. Create a new file called `.env` at the root of the project and fill in the values
 ```env

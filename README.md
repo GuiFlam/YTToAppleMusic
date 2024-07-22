@@ -25,7 +25,7 @@ pip install -r requirements.txt
 ```python
 itunes_folder = r"C:\Users\<user>\Music\iTunes\iTunes Media\Automatically Add to iTunes"
 ```
-6. Create a new file called `.env` at the root of the project and fill in the values
+6. Fill in the values in `.env`, those are the credentials to connect to the web application
 ```env
 USERNAME=yourusername
 PASSWORD=yourpassword

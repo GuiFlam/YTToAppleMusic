@@ -21,7 +21,7 @@ if not os.path.exists(app.config['UPLOAD_FOLDER']):
     os.makedirs(app.config['UPLOAD_FOLDER'])
 
 # Path to the venv
-path = os.path.join(os.getcwd(), 'venv', 'Scripts', 'python')
+path = os.path.join(os.getcwd(), '.venv', 'Scripts', 'python')
 
 @app.route('/', methods=['GET', 'POST'])
 @basic_auth.required

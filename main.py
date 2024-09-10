@@ -9,7 +9,7 @@ import shutil
 import subprocess
 
 # Define the destination folder for iTunes
-itunes_folder = r"C:\Users\guifl\Music\iTunes\iTunes Media\Automatically Add to iTunes"
+itunes_folder = r"C:\Users\<user>\Music\iTunes\iTunes Media\Automatically Add to iTunes"
 
 parser = argparse.ArgumentParser(description='Process a YouTube video.')
 parser.add_argument('video_link', type=str, help='The YouTube video link')

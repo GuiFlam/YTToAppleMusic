@@ -7,7 +7,7 @@ import os
 import argparse
 import shutil
 import subprocess
-from mutagen.mp3 import MP3
+from pydub import AudioSegment
 
 # Define the destination folder for iTunes
 itunes_folder = r"C:\Users\<user>\Music\iTunes\iTunes Media\Automatically Add to iTunes"
@@ -61,8 +61,19 @@ clip.close()
 # Remove the .mp4 file
 os.remove(new_file)
 
+
+audio = AudioSegment.from_mp3(mp3_filename)
+
+fixed_file = "fixed_file.mp3"
+
+# Export the file (re-encoding it with proper headers)
+audio.export(fixed_file, format="mp3", bitrate="192k")
+
+
+
+
 # Update audio metadata
-audio = EasyID3(mp3_filename)
+audio = EasyID3(fixed_file)
 audio.clear()
 audio['title'] = title
 audio['artist'] = artist
@@ -71,7 +82,7 @@ audio['genre'] = genre
 audio.save()
 
 # Add cover image to the .mp3 file
-audiofile = eyed3.load(mp3_filename)
+audiofile = eyed3.load(fixed_file)
 if audiofile.tag is None:
     audiofile.initTag()
 
@@ -82,12 +93,10 @@ audiofile.tag.save()
 
 print("All videos have been processed successfully.")
 
-audio = MP3(mp3_filename)
-print(f"MP3 duration: {audio.info.length} seconds")
 
 
 try:
-    shutil.move(os.path.join(mp3_filename), os.path.join(itunes_folder, os.path.basename(mp3_filename)))
+    shutil.move(os.path.join(fixed_file), os.path.join(itunes_folder, os.path.basename(fixed_file)))
     print(f"MP3 file moved to {itunes_folder}")
 
     # Open iTunes application

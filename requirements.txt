@@ -5,3 +5,4 @@ eyed3
 flask
 Flask-BasicAuth
 python-dotenv
+pydub

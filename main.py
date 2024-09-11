@@ -7,6 +7,7 @@ import os
 import argparse
 import shutil
 import subprocess
+from mutagen.mp3 import MP3
 
 # Define the destination folder for iTunes
 itunes_folder = r"C:\Users\<user>\Music\iTunes\iTunes Media\Automatically Add to iTunes"
@@ -80,6 +81,10 @@ with open(image_file, 'rb') as img_file:
 audiofile.tag.save()
 
 print("All videos have been processed successfully.")
+
+audio = MP3(mp3_filename)
+print(f"MP3 duration: {audio.info.length} seconds")
+
 
 try:
     shutil.move(os.path.join(mp3_filename), os.path.join(itunes_folder, os.path.basename(mp3_filename)))
